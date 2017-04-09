@@ -6,13 +6,13 @@ node {
 
         properties([
                 buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')),
-                [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/bertjan/spring-boot-sample/'],
+                [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/xpepper/spring-boot-sample/'],
                 pipelineTriggers([[$class: 'GitHubPushTrigger']])
             ])
     }
 
     stage('Checkout') {
-        git 'https://github.com/bertjan/spring-boot-sample'
+        git 'https://github.com/xpepper/spring-boot-sample'
     }
 
     stage('Version') {
@@ -38,7 +38,7 @@ node {
 
                 ./cf api https://api.run.pivotal.io
                 ./cf auth $USERNAME $PASSWORD
-                ./cf target -o bertjan-demo -s development
+                ./cf target -o pierodibello-org -s development
                 ./cf push
                '''
         }
